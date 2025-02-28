@@ -11,4 +11,13 @@
 
 source /opt/intel/oneapi/setvars.sh
 
-pdrs input_dryer
+#module purge
+module load anaconda3/5.3.1
+module load intel-mkl/2020.1/1/64
+module load intel/19.1/64/19.1.1.217
+module load openmpi/intel-19.0/3.1.3/64
+
+#export LD_LIBRARY_PATH=/scratch/cdg4/conda/envs/gdec/lib:$LD_LIBRARY_PATH
+
+python Scurvegen.py
+#python converge_298.py

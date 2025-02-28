@@ -1,0 +1,36 @@
+# Thermochemistry
+Mechanism file : ./RedMechU/RedMechU.chmech
+Thermodata file : ./RedMechU/RedMechU.chthermo
+Transdata file : ./RedMechU/RedMechU.chtrans
+Mechanism format : CK
+
+# Initial & Boundary Conditions
+Pressure : 101325.0
+Oxidizer temperature : 1000.0
+Oxidizer composition : O2   0.21
+                       N2   0.79
+Fuel temperature : 300.0
+Fuel composition : NXC7H16   1.0
+Fuel species : NXC7H16
+Initial guess type : Equilibrium
+
+# Simulation Parameters
+Manifold type : Zeta
+Solver: Banded
+Use steady : .false.
+Relative tolerance : 1.0e-6
+Absolute tolerance : 1.0e-12
+Scalar dissipation rate : 10
+
+# Grids
+Number of grid points : 99
+Grid type : NER_uniform
+
+# Output
+Write to screen : .false.
+Write mass fractions : .true.
+Write flamelet file : .true.
+Output directory : ../
+Output file: test
+Output interval : 10
+Use PROGSRC : .true.

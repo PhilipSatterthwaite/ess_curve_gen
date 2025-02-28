@@ -1,0 +1,44 @@
+# Thermochemistry
+Mechanism file : ./RedMechU/RedMechU.chmech
+Thermodata file : ./RedMechU/RedMechU.chthermo
+Transdata file : ./RedMechU/RedMechU.chtrans
+Mechanism format : CK
+
+# Initial & Boundary Conditions
+Pressure : 101325.0
+Oxidizer temperature : 298.0
+Oxidizer composition : N2 0.77
+                       O2 0.23
+Fuel temperature : 350
+Fuel composition : NXC7H16 0.85
+                    N2 0.15
+Fuel species : NXC7H16
+Start profile : ./Dryer_31new_radj.Y
+Droplet heating : 0.0
+Droplet vaporization: 1.557e-7
+Droplet radius : 
+# Droplet radius : 3.535e-4
+Enforce new boundary conditions : .true.
+
+# Simulation Parameters
+Manifold type : Zeta gZ
+Solver: Banded
+Use steady : .false.
+Relative tolerance : 1.0e-6
+Absolute tolerance : 1.0e-12
+Scalar dissipation rate : 5.0
+Use chemistry : .true.
+Spray : .true.
+
+# Grids
+Number of grid points : 31
+Grid type : stretched 
+
+# Output
+Write to screen : .false.
+Write mass fractions : .true.
+Write flamelet file : .true.
+Output directory : ./
+Output file: test
+Output interval : 10
+Verbose mode : .true.

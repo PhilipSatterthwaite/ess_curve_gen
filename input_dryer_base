@@ -38,7 +38,7 @@ Grid type : stretched
 Write to screen : .false.
 Write mass fractions : .true.
 Write flamelet file : .true.
-Output directory : ./
+Output directory : ./ouputs
 Output file: test
 Output interval : 10
 Verbose mode : .true.

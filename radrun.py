@@ -89,6 +89,8 @@ def run_radcase(input_filename: str, chi_ref: float):
             for i, line in enumerate(lines, 1):
                 if i == 29:
                     edited_line = f"{line.rstrip()}     {chi_ref}\n"
+                elif i == 41:
+                    edited_line = f"{line.rstrip()}{output_directory}/\n"
                 else:
                     edited_line = line
                 output_file.write(edited_line)

@@ -13,11 +13,11 @@ from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 
 inv_chimin = 0.1
-inv_chimax = 10
-n = 20
-for i in range(10,n+1):
-    chi = 1/((inv_chimax-inv_chimin)/n*i + inv_chimin)
-    file_name = f"rad{chi:.2f}.Y"
+inv_chimax = 2
+n = 10
+for i in range(0,n+1):
+    chi = round(1/((inv_chimax-inv_chimin)/n*i + inv_chimin),2)
+    file_name = f"chi{chi:.2f}.Y"
     if os.path.exists(os.path.join("rad_var", file_name)):
         continue
 

@@ -12,17 +12,17 @@ import numpy as np
 from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 
-rmin = 0.1
-rmax = 50
-n = 10
+inv_chimin = 0.1
+inv_chimax = 10
+n = 20
 for i in range(0,n+1):
-    radius = (rmax-rmin)/n*i + rmin
-    file_name = f"rad{radius:.2f}.Y"
+    chi = 1/((inv_chimax-inv_chimin)/n*i + inv_chimin)
+    file_name = f"rad{chi:.2f}.Y"
     if os.path.exists(os.path.join("rad_var", file_name)):
         continue
 
-    print(f"Radius: {radius}", flush=True)
-    df = run_radcase('input_dryer_base', radius)
+    print(f"Chi ref: {chi}", flush=True)
+    df = run_radcase('input_dryer_base', chi)
 
     # make terms that are less than E-100 equal 0
     for index, row in df.iloc[1:, :].iterrows():

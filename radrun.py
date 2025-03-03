@@ -95,8 +95,6 @@ def run_radcase(input_filename: str, chi_ref: float):
                     edited_line = line
                 output_file.write(edited_line)
                 
-        
-        print("running pdrs", flush=True)
         # Run the command and capture the output
         command = f"pdrs {temp_filename}"
 

@@ -56,7 +56,7 @@ def extract_closest_NER(df, NER_value):
     return closest_row
 
   
-def run_radcase(input_filename: str, radius: float):
+def run_radcase(input_filename: str, chi_ref: float):
     """
     Inputs:
     - prod_frac: percentage of products in second case
@@ -66,7 +66,7 @@ def run_radcase(input_filename: str, radius: float):
     - Z_val: output Z value to extract
     """
     
-    output_directory = f"{radius}"
+    output_directory = f"{chi_ref}"
     script_path = os.path.dirname(os.path.abspath(__file__))
     outputs_path = os.path.join(script_path, f"outputs/{output_directory}")
     os.makedirs(outputs_path)
@@ -87,14 +87,14 @@ def run_radcase(input_filename: str, radius: float):
         # Open the file in 'w' mode to overwrite it
         with open(temp_filename, 'w') as output_file:
             for i, line in enumerate(lines, 1):
-                if i == 19:
-                    edited_line = f"{line.rstrip()}     {radius}\n"
+                if i == 29:
+                    edited_line = f"{line.rstrip()}     {chi_ref}\n"
                 else:
                     edited_line = line
                 output_file.write(edited_line)
                 
         
-        print("running pdrs")
+        print("running pdrs", flush=True)
         # Run the command and capture the output
         command = f"pdrs {temp_filename}"
 
@@ -104,10 +104,10 @@ def run_radcase(input_filename: str, radius: float):
 
             # Read stdout and stderr line by line
             for line in process.stdout:
-                print(line, end="")  # Print each line in real time
+                print(line, end="", flush=True)  # Print each line in real time
 
             for line in process.stderr:
-                print(line, end="")  # Print error messages in real time
+                print(line, end="", flush=True)  # Print error messages in real time
 
             # Ensure the process completes
             process.wait()

@@ -12,8 +12,8 @@ import numpy as np
 from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 
-rmin = 1e-5
-rmax = 1e-2
+rmin = 0.1
+rmax = 50
 n = 10
 for i in range(0,n+1):
     radius = (rmax-rmin)/n*i + rmin
@@ -21,7 +21,7 @@ for i in range(0,n+1):
     if os.path.exists(os.path.join("rad_var", file_name)):
         continue
 
-    print(f"Radius: {radius}")
+    print(f"Radius: {radius}", flush=True)
     df = run_radcase('input_dryer_base', radius)
 
     # make terms that are less than E-100 equal 0

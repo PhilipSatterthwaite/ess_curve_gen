@@ -16,7 +16,7 @@ Fuel species : NXC7H16
 Start profile : ./Dryer_31new_radj.Y
 Droplet heating : 0.0
 Droplet vaporization: 1.557e-7
-Droplet radius : 
+Droplet radius : 3.535e-4
 # Droplet radius : 3.535e-4
 Enforce new boundary conditions : .true.
 
@@ -26,7 +26,7 @@ Solver: Banded
 Use steady : .false.
 Relative tolerance : 1.0e-6
 Absolute tolerance : 1.0e-12
-Scalar dissipation rate : 5.0
+Scalar dissipation rate : 
 Use chemistry : .true.
 Spray : .true.
 

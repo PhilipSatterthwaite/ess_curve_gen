@@ -12,8 +12,8 @@ import numpy as np
 from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 
-inv_chimin = 0.1
-inv_chimax = 2
+inv_chimin = 0.01
+inv_chimax = 0.1
 n = 10
 for i in range(0,n+1):
     chi = round(1/((inv_chimax-inv_chimin)/n*i + inv_chimin),2)

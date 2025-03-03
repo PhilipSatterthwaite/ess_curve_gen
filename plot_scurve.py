@@ -66,7 +66,7 @@ for file_name in sorted(os.listdir(directory)):
 
 # Normalize chi values for colormap
 norm = mcolors.Normalize(vmin=min(chis), vmax=max(chis))
-cmap = cm.viridis  # Choose a colormap
+cmap = cm.coolwarm  # Choose a colormap
 
 # Prepare line segments for LineCollection
 for file_name in sorted(os.listdir(directory)):  

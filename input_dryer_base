@@ -41,4 +41,4 @@ Write flamelet file : .true.
 Output directory : ./outputs/
 Output file: test
 Output interval : 10
-Verbose mode : .true.
+Verbose mode : .false.

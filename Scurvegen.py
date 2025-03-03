@@ -15,7 +15,7 @@ from concurrent.futures import ProcessPoolExecutor
 inv_chimin = 0.1
 inv_chimax = 10
 n = 20
-for i in range(0,n+1):
+for i in range(10,n+1):
     chi = 1/((inv_chimax-inv_chimin)/n*i + inv_chimin)
     file_name = f"rad{chi:.2f}.Y"
     if os.path.exists(os.path.join("rad_var", file_name)):

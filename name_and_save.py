@@ -18,7 +18,8 @@ def name_and_save(data, name, directory):
     # Extract headers from the first row
     headers = data.iloc[0].tolist()   
     
-    formatted_data = pd.concat([data.iloc[1:,0], data.iloc[1:, 1:].applymap(scientific_notation)], axis=1)
+    #formatted_data = pd.concat([data.iloc[1:,0], data.iloc[1:, 1:].applymap(scientific_notation)], axis=1)
+    formatted_data = pd.concat([data.iloc[1:, 0], data.iloc[1:, 1:].apply(lambda col: col.map(scientific_notation))], axis=1)
     #formatted_data = data.iloc[1:].map(scientific_notation)
     
     # Convert DataFrame to string with right-aligned columns

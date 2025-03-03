@@ -12,6 +12,9 @@ import numpy as np
 from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import matplotlib.colors as mcolors
+from matplotlib.collections import LineCollection
 
 rmin = 0.1
 rmax = 50
@@ -38,16 +41,34 @@ for file_name in sorted(os.listdir(directory)):  # Sorting ensures files are pro
 
 # Plotting
 plt.scatter(chis, max_temps, color='b', label='Max Temperature')
-plt.xlabel("1/Chi")
-plt.ylabel("Max Temperature")
-plt.title("Max Temperature vs. Radius")
+plt.xlabel(r"$1/\chi $ [s]")
+plt.ylabel(r"$T_{max} $ [K]")
 plt.legend()
 plt.grid(True)
 plt.show()
 
 
+directory = "rad_var"
+chis = []
+lines = []
+colors = []
+
 plt.figure(figsize=(8, 6))
 
+# Collect all chi values for normalization
+for file_name in sorted(os.listdir(directory)):  
+    if file_name.endswith(".Y"):  
+        try:
+            chi = float(file_name[3:-2])  
+            chis.append(chi)
+        except ValueError:
+            continue  
+
+# Normalize chi values for colormap
+norm = mcolors.Normalize(vmin=min(chis), vmax=max(chis))
+cmap = cm.viridis  # Choose a colormap
+
+# Prepare line segments for LineCollection
 for file_name in sorted(os.listdir(directory)):  
     if file_name.endswith(".Y"):  
         try:
@@ -56,15 +77,32 @@ for file_name in sorted(os.listdir(directory)):
             continue  
 
         df = extract_output_data("", os.path.join(directory, file_name))
-        col1 = df.iloc[1:, 0]  # Column 1
-        col2 = df.iloc[1:, 46]  # Column 2
+        col1 = df.iloc[1:, 0].values  # Column 1 (Z)
+        col2 = df.iloc[1:, 2].values  # Column 2 (SDR)
 
-        # Plot each dataset with a label
-        plt.plot(col1, col2, label=f"Chi ref {chi:.2f}")
+        # Create line segments
+        segments = [np.column_stack([col1, col2])]
+        lines.extend(segments)
+        colors.append(cmap(norm(chi)))  # Assign color based on chi
 
-# Customize and show the second plot
+# Create a LineCollection
+lc = LineCollection(lines, colors=colors, linewidth=2)
+
+# Add to plot
+ax = plt.gca()
+ax.add_collection(lc)
+
+# Adjust limits
+ax.autoscale()
 plt.xlabel("Z")
-plt.ylabel("SDR")
-plt.legend()
+plt.ylabel("T [K]")
 plt.grid(True)
+
+# Add color bar
+sm = cm.ScalarMappable(cmap=cmap, norm=norm)
+sm.set_array([])
+cbar = plt.colorbar(sm, ax=ax)
+cbar.set_label("Reference SDR")
+
+# Show the plot
 plt.show()

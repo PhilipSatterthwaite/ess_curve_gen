@@ -16,12 +16,10 @@ import matplotlib.cm as cm
 import matplotlib.colors as mcolors
 from matplotlib.collections import LineCollection
 
-rmin = 0.1
-rmax = 50
-n = 10
+
 chis = []
 max_temps = []
-directory = "rad_var"
+directory = "chi_var_new"
 
 for file_name in sorted(os.listdir(directory)):  # Sorting ensures files are processed in order
     if file_name.endswith(".Y"):  # Process only relevant files
@@ -31,7 +29,7 @@ for file_name in sorted(os.listdir(directory)):  # Sorting ensures files are pro
             continue  # Skip files that don't match the expected format
 
         df = extract_output_data("", os.path.join(directory, file_name))
-    df = extract_output_data("rad_var", file_name)
+    df = extract_output_data(directory, file_name)
     temps = df.iloc[1:, 2]
     max_temp = max(temps)
     
@@ -39,8 +37,29 @@ for file_name in sorted(os.listdir(directory)):  # Sorting ensures files are pro
     chis.append(1/chi)
     max_temps.append(max_temp)
 
+chis_trunc = []
+max_temps_trunc = []
+directory_trunc = "chi_var_trunc"
+
+for file_name in sorted(os.listdir(directory_trunc)):  # Sorting ensures files are processed in order
+    if file_name.endswith(".Y"):  # Process only relevant files
+        try:
+            chi = float(file_name[3:-2])  # Extracting radius from filename (e.g., "rad12.34.Y")
+        except ValueError:
+            continue  # Skip files that don't match the expected format
+
+        df = extract_output_data("", os.path.join(directory, file_name))
+    df = extract_output_data(directory, file_name)
+    temps = df.iloc[1:, 2]
+    max_temp = max(temps)
+    
+    # Store values for plotting
+    chis_trunc.append(1/chi)
+    max_temps_trunc.append(max_temp)
+
 # Plotting
 plt.scatter(chis, max_temps, color='b', label='Max Temperature')
+plt.scatter(chis_trunc, max_temps_trunc, color='g', label='Max Temperature')
 plt.xlabel(r"$1/\chi $ [s]")
 plt.ylabel(r"$T_{max} $ [K]")
 plt.legend()
@@ -48,7 +67,7 @@ plt.grid(True)
 plt.show()
 
 
-directory = "rad_var"
+directory = "chi_var_new"
 chis = []
 lines = []
 colors = []

@@ -12,8 +12,8 @@ import numpy as np
 from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 
-inv_chimin = 0.02
-inv_chimax = 0.05
+inv_chimin = 0.1
+inv_chimax = 2
 n = 10
 directory = "chi_var_enth"
 for i in range(0,n+1):

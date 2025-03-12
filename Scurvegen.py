@@ -13,9 +13,9 @@ from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 
 inv_chimin = 0.02
-inv_chimax = 0.05
-n = 10
-directory = "chi_var_enth"
+inv_chimax = 2.0
+n = 30
+directory = "chi_var_trunc_4atm"
 for i in range(0,n+1):
     chi = round(1/((inv_chimax-inv_chimin)/n*i + inv_chimin),2)
     file_name = f"chi{chi:.2f}.Y"
@@ -23,7 +23,7 @@ for i in range(0,n+1):
         continue
 
     print(f"Chi ref: {chi}", flush=True)
-    df = run_radcase('input_dryer_base_enth', chi)
+    df = run_radcase('input_dryer_base_trunc', chi)
 
     # make terms that are less than E-100 equal 0
     for index, row in df.iloc[1:, :].iterrows():

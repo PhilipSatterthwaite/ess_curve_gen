@@ -22,7 +22,7 @@ Enforce new boundary conditions : .true.
 
 # Simulation Parameters
 Manifold type : Zeta gZ
-Solver: Banded
+Solver: Dense
 Use steady : .false.
 Relative tolerance : 1.0e-6
 Absolute tolerance : 1.0e-12

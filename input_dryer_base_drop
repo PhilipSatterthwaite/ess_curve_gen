@@ -5,7 +5,7 @@ Transdata file : ./RedMechU/RedMechU.chtrans
 Mechanism format : CK
 
 # Initial & Boundary Conditions
-Pressure : 101325.0
+Pressure : 401325.0
 Oxidizer temperature : 298.0
 Oxidizer composition : N2 0.77
                        O2 0.23
@@ -22,11 +22,11 @@ Enforce new boundary conditions : .true.
 
 # Simulation Parameters
 Manifold type : Zeta gZ
-Solver: Banded
+Solver: Dense
 Use steady : .false.
 Relative tolerance : 1.0e-6
 Absolute tolerance : 1.0e-12
-Scalar dissipation rate :     100.0
+Scalar dissipation rate : 
 Use chemistry : .true.
 Spray : .true.
 
@@ -38,7 +38,7 @@ Grid type : stretched
 Write to screen : .false.
 Write mass fractions : .true.
 Write flamelet file : .true.
-Output directory : ./outputs/100.0/
+Output directory : ./outputs/
 Output file: test
 Output interval : 10
 Verbose mode : .false.

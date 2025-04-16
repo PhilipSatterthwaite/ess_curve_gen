@@ -12,12 +12,15 @@ import numpy as np
 from find_max import find_max
 from concurrent.futures import ProcessPoolExecutor
 
-inv_chimin = 0.02
-inv_chimax = 2.0
+chi_min =-1.0
+chi_max = 1.0
+inv_chimin = 1/chi_max
+inv_chimax = 1/chi_min
 n = 30
-directory = "chi_var_drop_4atm"
+directory = "mdot_mult_factor"
 for i in range(0,n+1):
     chi = round(1/((inv_chimax-inv_chimin)/n*i + inv_chimin),2)
+    chi = round(((chi_max-chi_min)*i/n + chi_min),2)
     file_name = f"chi{chi:.2f}.Y"
     if os.path.exists(os.path.join(directory, file_name)):
         continue
